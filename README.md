@@ -21,3 +21,21 @@ Each resume dataset (Kaggle and generated) has its own set of job postings that 
 - **job_posts/job_postings_gen.csv** Includes job posts from LinkedIn for the following occupations - 'Account Executive', 'Data Analyst', 'Data Scientist',
        'Firmware Engineer', 'Graphic Designer', 'Marketing', 'Product Manager', 'Research Scientist', 'Supply Chain Manager', 'Technical Writer', 'UX Designer' **(Will be added soon)**
  ## Code
+### Environment
+
+### Summarization
+To generate summaries, run `scripts/generate_summaries.py`. For example, to run it with the Kaggle name perturbations dataset for only Command-R (Cohere), run the following:
+```
+python scripts/generate_summaries.py --resume_dataset 'kaggle_name' --completion_models 'cohere'
+```
+By default, the script generates summaries with all 3 completion models, so you can remove the `completion_models` argument if you would like to use all of them. Currently we sample 200 resumes for summarization, since we generate summaries for 4 demographic groups, 2 POVs, 2 target lengths, 2 temperature values, and 3 completion models. Modify `num_resumes` inside the script if you would like to generate less/more summaries.
+
+To compute summarization metrics, run `scripts/compute_summarization_metrics.py`. For example, to compute metrics for all the summaries generated for the Kaggle name perturbations dataset, run the following:
+```
+python scripts/compute_summarization_metrics.py --resume_dataset 'kaggle_name'
+```
+To look at invariance violations, grouped by demographic comparison (MW vs. MB, FW vs. FB, MW vs. FW, MB vs. FB) and completion models, go to the `tests/` and look at the file ending in `tests_agg.csv`.
+Note: We only generate summarizations for df_resumes_kaggle_name.csv and df_resumes_gen_augmented.csv in the paper.
+### Retrieval
+
+All of the scripts contain optional `load_path` and `save_path` arguments. Please modify `load_path` and `save_path` arguments if you would like to modify the file organization.
