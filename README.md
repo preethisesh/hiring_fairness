@@ -28,6 +28,9 @@ pip install -r requirements.txt
 ```
 In addition, run `python -m spacy download en_core_web_sm`. 
 
+### API Keys
+Currently `api_keys.txt` has missing API keys. You will need to add valid API keys to run the various models.
+
 ### Summarization
 To generate summaries, run `scripts/generate_summaries.py`. For example, to generate summaries with the Kaggle name perturbations dataset for only Command-R (Cohere), run the following:
 ```
