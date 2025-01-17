@@ -22,6 +22,11 @@ Each resume dataset (Kaggle and generated) has its own set of job postings that 
        'Firmware Engineer', 'Graphic Designer', 'Marketing', 'Product Manager', 'Research Scientist', 'Supply Chain Manager', 'Technical Writer', 'UX Designer' **(Will be added soon)**
  ## Code
 ### Environment
+To install the required packages, run the following:
+```
+pip install -r requirements.txt
+```
+In addition, run `python -m spacy download en_core_web_sm`. 
 
 ### Summarization
 To generate summaries, run `scripts/generate_summaries.py`. For example, to generate summaries with the Kaggle name perturbations dataset for only Command-R (Cohere), run the following:
