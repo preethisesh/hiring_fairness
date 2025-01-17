@@ -94,7 +94,7 @@ def get_top_represented_groups(df_posts, percents, groups=['FB', 'FW', 'MB', 'MW
         for en in [1,2]:
             cols = [f'{group}_{percent}_{en}' for group in groups]
     
-            # Gets the top represented group(s) for each job post
+            # gets the top represented group(s) for each job post
             max_vals = [
                 df_posts[cols].columns[df_posts[cols].loc[i] == df_posts[cols].loc[i].max()].tolist()
                 for i in df_posts[cols].index

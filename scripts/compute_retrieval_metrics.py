@@ -18,7 +18,7 @@ def save_dict_to_json(dictionary, filepath):
         json.dump(dictionary, f, indent=4)
 
 def compute_results(model, results_dict, embedding_filename, path):
-    # load resume embeddings, change embedding_filename depending on which set of resumes you want to run
+    # load resume embeddings
     resume_embeddings_all = np.load(f'{path}embeddings/resumes/{embedding_filename}.npy') 
 
     # load job posts
@@ -52,10 +52,10 @@ def compute_results(model, results_dict, embedding_filename, path):
     resume_embeddings_all_split = np.split(resume_embeddings_all, num_groups)
     resume_embeddings1 = np.vstack([resume_embeddings_all_split[i] for i in range(start1, num_groups, jump)])
     resume_embeddings2 = np.vstack([resume_embeddings_all_split[i] for i in range(start2, num_groups, jump)])
-    cutoff = len(resume_embeddings_all_split[0]) # cutoff for categorizing ranked indices into groups
+    cutoff = len(resume_embeddings_all_split[0]) # use to categorize indices into groups
     print(cutoff, resume_embeddings1.shape, resume_embeddings2.shape)
 
-    # create resume_embedding_dict to obtain embeddings corresponding to perturbed versions
+    # create resume_embedding_dict to make it easy to get perturbed embeddings
     if 'non_name' in embedding_filename:
         resume_embedding_dict = {'resume_': resume_embeddings_all_split[0], 
                                 'resume_no_space': resume_embeddings_all_split[1],
@@ -105,7 +105,7 @@ def main(load_path, save_path, resume_dataset, embedding_models):
         results_dict[model]['nonuniformity'] = {}
         results_dict[model]['exclusion'] = {}
         results_dict = compute_results(model, results_dict, embedding_filename, load_path)
-    # save dictionary with results
+    # save result dictionary as a json file
     save_dict_to_json(results_dict, f'{save_path}retrieval_metrics/{embedding_filename}.json')
 
 if __name__ == "__main__":

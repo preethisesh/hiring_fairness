@@ -57,7 +57,7 @@ def main(load_path, save_path, resume_dataset, embedding_models):
         save_file =  f'{save_path}embeddings/jobs/{job_post_filename}_model={model}.npy'
         np.save(save_file, job_embeddings)
 
-        # comptue resume embeddings
+        # compute resume embeddings
         resumes = []
         for col in resume_cols:
             resumes_sub = df_resumes[col].values
@@ -79,9 +79,9 @@ if __name__ == "__main__":
     parser.add_argument('--embedding_models', type=str, 
                     choices=['text-embedding-3-small', 'text-embedding-3-large', 
                             'embed-english-v3.0', 'mistral-embed'],
-                    nargs='+',  # Accepts one or more arguments
+                    nargs='+',  # accepts one or more arguments
                     default=['text-embedding-3-small', 'text-embedding-3-large', 
-                            'embed-english-v3.0', 'mistral-embed'],  # Default is all options
+                            'embed-english-v3.0', 'mistral-embed'],  # default is all options
                     help='Choose which embedding models to use')
     parser.add_argument('--load_path', type=str, default='', 
                         help='Path where resumes are located')
