@@ -57,4 +57,6 @@ python scripts/compute_retrieval_metrics.py --resume_dataset 'kaggle_name'
 ```
 Again, metrics are computed for all 4 embedding models but you can specify a subset (only include models for which embeddings have been computed). Retrieval metrics are saved in a .json file in `retrieval_metrics/`. Note that the non-uniformity metric is *not* computed for non-name perturbations. Additionally, the exclusion results are broken up by direction1 and direction2. For gender perturbations direction1 is `M->F` and direction2 is `F->M`, for race perturbations direction1 is `W->B` and direction2 is `B->W`, for within-group perturbations direction1 and direction2 preserve the demographic group (and should therefore be close), and for non-name perturbations direction1 is `original -> modified spacing` and direction2 is `original -> typos`.
 
+It is worth mentioning that the retrieval evaluation (computing embeddings and retrieval metrics) is much quicker to do than the summarization evaluation (generating summaries and computing summarization metrics). 
+
 All of the scripts contain optional `load_path` and `save_path` arguments, which are left empty by default. You can leave this as is, or modify these arguments if you would like to change the file organization.
