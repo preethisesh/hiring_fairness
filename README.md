@@ -43,7 +43,7 @@ To compute summarization metrics, run `scripts/compute_summarization_metrics.py`
 python scripts/compute_summarization_metrics.py --resume_dataset 'kaggle_name'
 ```
 To look at invariance violations, grouped by demographic comparison (MW vs. MB, FW vs. FB, MW vs. FW, MB vs. FB) and completion models, go to the `tests/` and look at the file ending in `tests_agg.csv` (the file ending in `tests.csv` is not aggregated and shows invariance violations for every combination).
-Note: We only generate summarizations for df_resumes_kaggle_name.csv and df_resumes_gen_augmented.csv in the paper.
+Note: We only show summarization results for df_resumes_gen_augmented.csv in the paper.
 ### Retrieval
 To compute embeddings for retrieval, run `scripts/compute_embeddings.py`. For example, to compute embeddings with the Kaggle name perturbations dataset, run the following:
 ```
