@@ -7,7 +7,7 @@ Contexts](https://arxiv.org/pdf/2501.04316?).
 
 ## Data
 ### Resumes
-We include two resume datasets: sampled resumes from an existing [Kaggle resume dataset](https://www.kaggle.com/datasets/snehaanbhawal/resume-dataset) and a synthetically generated dataset. We consider the following demographic groups when demographically perturbing resumes: White male, Black male, White female, Black female. We also perform (1) augmenting with extracurricular information (generated resumes only), (2) within-group demographic perturbations, and (3) non-demographic perturbations (spacing and typos). 
+We include two resume datasets: sampled resumes from an existing [Kaggle resume dataset](https://www.kaggle.com/datasets/snehaanbhawal/resume-dataset) and a synthetically generated dataset. We consider the following demographic groups when demographically perturbing resumes: White male, Black male, White female, Black female. We perform (1) demographic perturbations with names only, (2) demographic perturbations with names + extracurricular information (generated resumes only), (3) within-group demographic perturbations, and (4) non-demographic perturbations (spacing and typos). 
 - **resumes/df_resumes_kaggle_name.csv**: Kaggle resumes with name perturbations only. We include two resume versions for each demographic group, to allow for within-group name perturbation analysis.
 - **resumes/df_resumes_kaggle_non_name.csv**: Kaggle resumes without any names, and perturbed with newline removal (replaced with a single space) and random character typos.
 - **resumes/df_resumes_gen_name.csv**: Generated resumes with name perturbations only. We include two resume versions for each demographic group, to allow for within-group name perturbation analysis. **(Will be added soon)**
