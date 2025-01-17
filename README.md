@@ -24,11 +24,11 @@ Each resume dataset (Kaggle and generated) has its own set of job postings that 
 ### Environment
 
 ### Summarization
-To generate summaries, run `scripts/generate_summaries.py`. For example, to run it with the Kaggle name perturbations dataset for only Command-R (Cohere), run the following:
+To generate summaries, run `scripts/generate_summaries.py`. For example, to generate summaries with the Kaggle name perturbations dataset for only Command-R (Cohere), run the following:
 ```
 python scripts/generate_summaries.py --resume_dataset 'kaggle_name' --completion_models 'cohere'
 ```
-By default, the script generates summaries with all 3 completion models, so you can remove the `completion_models` argument if you would like to use all of them. Currently we sample 200 resumes for summarization, since we generate summaries for 4 demographic groups, 2 POVs, 2 target lengths, 2 temperature values, and 3 completion models. Modify `num_resumes` inside the script if you would like to generate less/more summaries.
+By default, the script generates summaries with all 3 completion models, so you can remove the `completion_models` argument if you would like to use all of them. Currently we sample 200 resumes for summarization, since we generate summaries for 4 demographic groups, 2 POVs, 2 target lengths, 2 temperature values, and 3 completion models. Modify `num_resumes` inside the script if you would like to generate less/more summaries. All generated summaries will be stored in the `completions/` folder.
 
 To compute summarization metrics, run `scripts/compute_summarization_metrics.py`. For example, to compute metrics for all the summaries generated for the Kaggle name perturbations dataset, run the following:
 ```
@@ -37,5 +37,16 @@ python scripts/compute_summarization_metrics.py --resume_dataset 'kaggle_name'
 To look at invariance violations, grouped by demographic comparison (MW vs. MB, FW vs. FB, MW vs. FW, MB vs. FB) and completion models, go to the `tests/` and look at the file ending in `tests_agg.csv`.
 Note: We only generate summarizations for df_resumes_kaggle_name.csv and df_resumes_gen_augmented.csv in the paper.
 ### Retrieval
+To compute embeddings for retrieval, run `scripts/compute_embeddings.py`. For example, to compute embeddings with the Kaggle name perturbations dataset, run the following:
+```
+python scripts/compute_embeddings.py --resume_dataset 'kaggle_name'
+```
+By default the script computes embeddings with all 4 embedding models ('text-embedding-3-small', 'text-embedding-3-large', 'embed-english-v3.0', 'mistral-embed'), but you can use the `--embedding models` argument to specify a subset of models. All generated embeddings will be stored in the `embeddings/` folder.
 
-All of the scripts contain optional `load_path` and `save_path` arguments. Please modify `load_path` and `save_path` arguments if you would like to modify the file organization.
+To compute retrieval metrics, run `scripts/compute_retrieval_metrics.py`. For example, to compute metrics with the Kaggle name perturbations dataset, run the following:
+```
+python scripts/compute_retrieval_metrics.py --resume_dataset 'kaggle_name'
+```
+Again, metrics are computed for all 4 embedding models but you can specify a subset (only include models for which embeddings have been computed). Retrieval metrics are saved in a .json file in `retrieval_metrics/`. Note that the non-uniformity metric is *not* computed for non-name perturbations. Additionally, the exclusion results are broken up by direction1 and direction2. For gender perturbations direction1 is `M->F` and direction2 is `F->M`, for race perturbations direction1 is `W->B` and direction2 is `B->W`, and for non-name perturbations direction1 is `original -> modified spacing` and direction2 is `original -> typos`.
+
+All of the scripts contain optional `load_path` and `save_path` arguments, which are left empty by default. You can leave this as is, or modify these arguments if you would like to change the file organization.
