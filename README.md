@@ -40,7 +40,7 @@ By default, the script generates summaries with all 3 completion models, so you 
 
 To compute summarization metrics, run `scripts/compute_summarization_metrics.py`. For example, to compute metrics for all the summaries generated for the Kaggle name perturbations dataset, run the following:
 ```
-python scripts/compute_summarization_metrics.py --resume_dataset 'kaggle_name'
+python scripts/compute_summarization_metrics.py --completion_dataset 'kaggle_name'
 ```
 To look at invariance violations, grouped by demographic comparison (MW vs. MB, FW vs. FB, MW vs. FW, MB vs. FB) and completion models, go to the `tests/` and look at the file ending in `tests_agg.csv` (the file ending in `tests.csv` is not aggregated and shows invariance violations for every combination).
 Note: We only show summarization results for df_resumes_gen_augmented.csv in the paper.
